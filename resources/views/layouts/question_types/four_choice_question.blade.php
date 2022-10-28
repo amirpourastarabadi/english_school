@@ -1,6 +1,8 @@
 <div class="question row my-4 h3 mb-5">
+
+    @foreach ($multiselect_questions as $question)
     <p class="question-title col-12 m3-5 " style="line-height: 46px; text-align: justify">
-        1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita, aspernatur doloribus unde nostrum quasi eaque impedit quam magni, quaerat aut mollitia! Eius deserunt quis nemo error cupiditate, blanditiis aut.
+        {{$loop->iteration . '- ' . $question->body}}
     </p>
     <div class="col-md-3 col-sm-12 d-flex align-items-center">
         <input class="form-check-input mb-2 mx-2" type="radio" name="first-question" id="first-answer">
@@ -30,4 +32,6 @@
         </label>
     </div>
     <hr>
+    @endforeach
+
 </div>
