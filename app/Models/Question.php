@@ -10,4 +10,9 @@ class Question extends Model
     use HasFactory;
 
     protected $table = 'questions';
+
+    public function answers()
+    {
+        return $this->belongsToMany(Answer::class, 'answer_question')->withPivot('is_correct');
+    }
 }
