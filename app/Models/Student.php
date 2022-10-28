@@ -15,4 +15,9 @@ class Student extends Model
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class)->withPivot('score', 'take_at');
+    }
 }

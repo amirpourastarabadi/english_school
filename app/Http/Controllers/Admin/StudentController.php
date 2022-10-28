@@ -15,6 +15,7 @@ class StudentController extends Controller
     
     public function show(Student $student)
     {
+        $student->load('exams');
         return view('admin.students.show', ['student' => $student, 'admin' => Admin::first()]);
     }
 }
