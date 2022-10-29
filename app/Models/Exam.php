@@ -11,7 +11,7 @@ class Exam extends Model
 
     protected $gaurded = [];
 
-    public function studnets()
+    public function students()
     {
         return $this->belongsToMany(Student::class);
     }
