@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Student\Exams\CreateAnswersheet;
+use App\Models\Answersheet;
 use App\Models\Exam;
 use Illuminate\Http\Request;
 
@@ -19,8 +21,8 @@ class ExamController extends Controller
         return view('students.exams.show', compact('exam', 'multiselect_questions', 'blank_questions'));
     }
 
-    public function submit(Request $request)
+    public function submit(CreateAnswersheet $request)
     {
-        dd($request->all());
+        Answersheet::insert($request->validated()['answersheet']);
     }
 }
