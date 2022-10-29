@@ -10,7 +10,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return view('admin.students.index', ['students' => Student::all()]);
+        return view('admin.students.index', ['students' => Student::all(), 'admin' => Admin::first()]);
     }
     
     public function show(Student $student)

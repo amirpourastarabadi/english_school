@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\AnswerQuestion;
 use App\Models\Exam;
 use App\Models\Question;
+use App\Models\Student;
 use Database\Factories\AdminFactory;
 use Illuminate\Database\Seeder;
 
@@ -38,6 +39,8 @@ class DatabaseSeeder extends Seeder
                 'is_correct' => true
             ]);
         });
+
+        Student::factory()->create();
     
         // $this->call(StudentSeeder::class);
         // $this->call(ExamQuestionSeeder::class);

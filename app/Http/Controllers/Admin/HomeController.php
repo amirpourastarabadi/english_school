@@ -10,6 +10,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin.index', ['admin' => Admin::first()]);
+        return view('admin.dashboard.index', ['admin' => Admin::first()]);
     }
 }
