@@ -50,7 +50,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="{{route('admin.exams.index')}}">
             <i class="fas fa-fw fa-folder"></i>
             <span>Exams</span></a>
     </li>

@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Accessors\GlobalAccessors\HumanReadableDate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Exam extends Model
 {
-    use HasFactory;
+    use HasFactory, HumanReadableDate;
 
-    protected $gaurded = [];
+    protected $guarded = [];
 
     public function students()
     {
@@ -19,5 +21,15 @@ class Exam extends Model
     public function questions()
     {
         return $this->belongsToMany(Question::class, 'exam_question');
+    }
+
+    public function getNumberOfQuestionsAttribute()
+    {
+        return $this->questions()->count();
+    }
+
+    public function getNumberOfStudentsTakeItAttribute()
+    {
+        return $this->students()->count();
     }
 }
