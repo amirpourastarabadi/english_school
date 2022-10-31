@@ -33,25 +33,21 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{route('admin.exams.show', $exam)}}">
+                            <a href="{{route('admin.exams.questions.index', $exam)}}">
                                 {{$exam->number_of_questions}}
                             </a>
                         </td>
                         <td>
-                            <a href="#">
+                            <a href="#"> 
                                 {{$exam->number_of_students_take_it}}
                             </a>
                         </td>
                         <td>
-                            <a href="{{route('admin.exams.show', $exam)}}">
-                                {{$exam->human_readable_created_at}}
-                            </a>
+                            {{$exam->human_readable_created_at}}
                         </td>
 
                         <td>
-                            <a href="{{route('admin.exams.show', $exam)}}">
-                                {{$exam->human_readable_updated_at}}
-                            </a>
+                            {{$exam->human_readable_updated_at}}
                         </td>
                     </tr>
 

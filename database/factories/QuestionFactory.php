@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Exam;
 use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,6 +20,7 @@ class QuestionFactory extends Factory
     {
         return [
             'body' => $this->faker->text(random_int(150, 200)),
+            'exam_id' => Exam::factory()
         ];
     }
 
@@ -28,6 +30,13 @@ class QuestionFactory extends Factory
 
         return $this->state([
             'type' => $types[random_int(0, 1)]
+        ]);
+    }
+
+    public function forExam(Exam $exam)
+    {
+        return $this->state([
+            'exam_id' => $exam->getKey()
         ]);
     }
 }

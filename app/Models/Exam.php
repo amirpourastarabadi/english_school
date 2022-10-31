@@ -20,7 +20,7 @@ class Exam extends Model
 
     public function questions()
     {
-        return $this->belongsToMany(Question::class, 'exam_question');
+        return $this->hasMany(Question::class);
     }
 
     public function getNumberOfQuestionsAttribute()

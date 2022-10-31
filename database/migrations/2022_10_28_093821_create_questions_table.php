@@ -17,6 +17,13 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->text('body');
             $table->enum('type', ['blank', 'match', 'multiple_choice'])->default('multiple_choice');
+
+            $table->unsignedBigInteger('exam_id');
+            $table->foreign('exam_id')
+                ->references('id')
+                ->on('exams')
+                ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

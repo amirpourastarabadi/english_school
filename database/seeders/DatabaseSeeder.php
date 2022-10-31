@@ -22,11 +22,12 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
 
         $exam = Exam::factory()->create();
-        $exam->questions()->saveMany(Question::factory(20)->create());
-        $exam->questions->each(function(Question $question){
+        Question::factory(20)->forExam($exam)->create();
+        
+        $exam->questions->each(function (Question $question) {
             $falseAnswers = Answer::factory(3)->create();
             $trueAnswers = Answer::factory()->create();
-            foreach($falseAnswers as $answer){
+            foreach ($falseAnswers as $answer) {
                 AnswerQuestion::factory()->create([
                     'question_id' => $question->getKey(),
                     'answer_id' => $answer->getKey(),
@@ -41,9 +42,8 @@ class DatabaseSeeder extends Seeder
         });
 
         Student::factory()->create();
-    
+
         // $this->call(StudentSeeder::class);
-        // $this->call(ExamQuestionSeeder::class);
         // $this->call(ExamSeeder::class);
         // $this->call(ExamStudentSeeder::class);
         // $this->call(QuestionSeeder::class);

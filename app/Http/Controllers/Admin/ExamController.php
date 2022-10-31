@@ -17,7 +17,7 @@ class ExamController extends Controller
 
     public function show(Exam $exam)
     {
-        return view('admin.exams.show', ['exam' => $exam, 'admin' => Admin::first()]);
+        return "ExamController@show under construct";
     }
 
     public function create()

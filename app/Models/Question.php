@@ -12,8 +12,15 @@ class Question extends Model
 
     protected $table = 'questions';
 
+    protected $guarded = [];
+
     public function answers()
     {
         return $this->belongsToMany(Answer::class, 'answer_question')->withPivot('is_correct');
+    }
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
     }
 }
