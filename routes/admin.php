@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\StudentController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('', [HomeController::class, 'index']);
+Route::get('', [HomeController::class, 'index'])->name('home');
 
 // student routes
 Route::get('students', [StudentController::class, 'index'])->name('students.index');
@@ -30,10 +30,10 @@ Route::get('questions/{?type}', [QuestionController::class, 'index'])->name('que
 // end of question routes
 
 // exam questions routes
-Route::get('exam/{exam}/questions', [ExamQuestionsController::class, 'index'])->name('exams.questions.index');
-Route::get('exam/{exam}/questions/create', [ExamQuestionsController::class, 'create'])->name('exams.questions.create');
-Route::get('exam/{exam}/questions/{question}', [ExamQuestionsController::class, 'show'])->name('exams.questions.show');
-Route::post('exam/{exam}/questions', [ExamQuestionsController::class, 'store'])->name('exams.questions.store');
+Route::get('exams/{exam}/questions', [ExamQuestionsController::class, 'index'])->name('exams.questions.index');
+Route::get('exams/{exam}/questions/create', [ExamQuestionsController::class, 'create'])->name('exams.questions.create');
+Route::get('exams/{exam}/questions/{question}', [ExamQuestionsController::class, 'show'])->name('exams.questions.show');
+Route::post('exams/{exam}/questions', [ExamQuestionsController::class, 'store'])->name('exams.questions.store');
 
 // question answers routes
 Route::get('questions/{question}/answers/create', [QuestionAnswersController::class, 'create'])->name('questions.answers.create');

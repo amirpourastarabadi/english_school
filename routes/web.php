@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'admin', 301);
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
 
 Auth::routes();
 

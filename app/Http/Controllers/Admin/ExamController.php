@@ -17,7 +17,15 @@ class ExamController extends Controller
 
     public function show(Exam $exam)
     {
-        return "ExamController@show under construct";
+        $exam->load('questions.answers');
+        
+        $multiselect_questions = $exam->questions->where('type', '=', 'multiple_choice');
+        
+        $blank_questions = $exam->questions->where('type', '=', 'blank');
+        
+        $admin = Admin::first();
+
+        return view('admin.exams.show', compact('admin', 'exam', 'multiselect_questions', 'blank_questions'));
     }
 
     public function create()
@@ -29,6 +37,6 @@ class ExamController extends Controller
     {
         $exam = Exam::create($request->validated());
 
-        return view('admin.exams.show', ['exam' => $exam, 'admin' => Admin::first()]);
+        return redirect(route('admin.exams.show', $exam));
     }
 }

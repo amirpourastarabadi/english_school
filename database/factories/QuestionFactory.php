@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Exam;
 use App\Models\Question;
+use App\Models\QuestionType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuestionFactory extends Factory
@@ -20,7 +21,9 @@ class QuestionFactory extends Factory
     {
         return [
             'body' => $this->faker->text(random_int(150, 200)),
-            'exam_id' => Exam::factory()
+            'exam_id' => Exam::factory(),
+            'type_id' => optional(QuestionType::where('title', 'multiple_choice')->first())->getKey() ??
+                         QuestionType::factory()->create(['title' => 'multiple_choice', 'id' => 1]),
         ];
     }
 
@@ -29,7 +32,7 @@ class QuestionFactory extends Factory
         $types = ['multiple_choice', 'blank'];
 
         return $this->state([
-            'type' => $types[random_int(0, 1)]
+            'type_id' => $types[random_int(0, 1)]
         ]);
     }
 

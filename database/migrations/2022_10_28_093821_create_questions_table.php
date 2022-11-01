@@ -16,7 +16,11 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-            $table->enum('type', ['blank', 'match', 'multiple_choice'])->default('multiple_choice');
+
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')
+                ->references('id')
+                ->on('question_types');
 
             $table->unsignedBigInteger('exam_id');
             $table->foreign('exam_id')

@@ -27,7 +27,8 @@ class ExamQuestionsController extends Controller
 
     public function store(CreateQuestion $request, Exam $exam)
     {
-        $question = $exam->questions()->create($request->validated());
-        return view('admin.questions.show', ['admin' => Admin::first(),'question' => $question]);
+        $exam->questions()->create($request->validated());
+        
+        return redirect(route('admin.exams.show', $exam));
     }
 }
