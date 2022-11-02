@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Mutators\TeacherMutators;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Teacher extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use TeacherMutators;
 
     /**
      * The attributes that are mass assignable.
@@ -17,8 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'mobile',
         'password',
     ];
 
@@ -29,15 +30,5 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 }
