@@ -39,6 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             $this->loadTeachersApiRoutes('v1');
+            $this->loadStudentsApiRoutes('v1');
 
             $this->loadWebRoutes();
         });
@@ -63,6 +64,15 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path("routes/api/$version/teachers/routes.php"));
+    }
+
+    private function loadStudentsApiRoutes(string $version)
+    {
+        Route::prefix("api/$version/students/")
+            ->name("api.$version.students.")
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path("routes/api/$version/students/routes.php"));
     }
 
     private function loadWebRoutes()
