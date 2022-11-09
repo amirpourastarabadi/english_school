@@ -20,7 +20,7 @@ class LoginController extends Controller
             return response()->json(['message' => trans('messages.invalid_credentials.')], Response::HTTP_UNAUTHORIZED);
         }
 
-        $api_token = $teacher->createToken('api_token')->plainTextToken;
+        $api_token = $teacher->createToken('api_token', ['teachers'])->plainTextToken;
         return response()->json(['api_token' => $api_token]);
     }
 }

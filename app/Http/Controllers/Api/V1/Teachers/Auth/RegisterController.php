@@ -12,7 +12,7 @@ class RegisterController extends Controller
     public function __invoke(Register $request)
     {
         $teacher = Teacher::create($request->validated());
-        $token = $teacher->createToken('api_token')->plainTextToken;
+        $token = $teacher->createToken('api_token', ['teachers'])->plainTextToken;
 
         return response()->json([
             'api_token' => $token

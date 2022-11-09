@@ -11,7 +11,7 @@ class RegisterController extends Controller
     public function __invoke(Register $request)
     {
         $student = Student::create($request->validated());
-        $token = $student->createToken('api_token')->plainTextToken;
+        $token = $student->createToken('api_token', ['students'])->plainTextToken;
 
         return response()->json([
             'api_token' => $token
