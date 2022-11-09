@@ -24,7 +24,7 @@ class Register extends FormRequest
     public function rules()
     {
         return [
-            'mobile'                => 'required|unique:teachers,mobile',
+            'mobile'                => 'required|unique:students,mobile',
             'password'              => ['required', 'string', 'min:' . config('validations.password.min_length', 8), 'confirmed'],
             'password_confirmation' => 'required',
         ];

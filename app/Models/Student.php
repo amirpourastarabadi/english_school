@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Mutators\StudentMutators;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
@@ -9,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Student extends Model
 {
     use HasFactory, HasApiTokens;
+    use StudentMutators;
 
     protected $fillable = [
         'mobile',
