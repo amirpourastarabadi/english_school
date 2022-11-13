@@ -27,4 +27,9 @@ class Student extends Model
     protected $hidden = [
         'password',
     ];
+
+    public function deleteSanctumTokens(string $token_name)
+    {
+        $this->tokens()->where('name', $token_name)->delete();
+    }
 }

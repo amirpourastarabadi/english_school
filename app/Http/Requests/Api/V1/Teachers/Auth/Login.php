@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\V1\Students;
+namespace App\Http\Requests\Api\V1\Teachers\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 

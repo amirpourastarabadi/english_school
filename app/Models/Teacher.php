@@ -31,4 +31,9 @@ class Teacher extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function deleteSanctumTokens(string $token_name)
+    {
+        $this->tokens()->where('name', $token_name)->delete();
+    }
 }
