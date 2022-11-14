@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Behaviors\StudentBehaviors;
 use App\Models\Mutators\StudentMutators;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Student extends Model
 {
     use HasFactory, HasApiTokens;
-    use StudentMutators;
+    use StudentMutators, StudentBehaviors;
 
     protected $fillable = [
         'mobile',
@@ -27,9 +28,4 @@ class Student extends Model
     protected $hidden = [
         'password',
     ];
-
-    public function deleteSanctumTokens(string $token_name)
-    {
-        $this->tokens()->where('name', $token_name)->delete();
-    }
 }

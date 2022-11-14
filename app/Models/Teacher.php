@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Behaviors\TeacherBehaviors;
 use App\Models\Mutators\TeacherMutators;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Teacher extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use TeacherMutators;
+    use TeacherMutators, TeacherBehaviors;
 
     /**
      * The attributes that are mass assignable.
@@ -31,9 +32,4 @@ class Teacher extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
-    public function deleteSanctumTokens(string $token_name)
-    {
-        $this->tokens()->where('name', $token_name)->delete();
-    }
 }
