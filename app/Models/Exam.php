@@ -2,29 +2,24 @@
 
 namespace App\Models;
 
-use App\Models\Relations\CourseRelations;
+use App\Models\Behaviors\ExamBehaviors;
+use App\Models\Relations\ExamRelations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Course extends Model
+class Exam extends Model
 {
     use HasFactory, SoftDeletes;
-    use CourseRelations;
+    use ExamRelations, ExamBehaviors;
 
     protected $fillable = [
-        'cost',
         'title',
-        'book_id',
-        'teacher_id',
-        'category_id',
+        'course_id'
     ];
 
     protected $casts = [
-        'cost' => 'integer',
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime:Y-m-d',
     ];
-
-
 }
