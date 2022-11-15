@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Behaviors\TeacherBehaviors;
 use App\Models\Mutators\TeacherMutators;
+use App\Models\Relations\TeacherRelations;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Teacher extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use TeacherMutators, TeacherBehaviors;
+    use TeacherMutators, TeacherBehaviors, TeacherRelations;
 
     /**
      * The attributes that are mass assignable.
