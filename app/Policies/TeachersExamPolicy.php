@@ -7,7 +7,7 @@ use App\Models\Exam;
 use App\Models\Teacher;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TeachearsExamPolicy
+class TeachersExamPolicy
 {
     use HandlesAuthorization;
 

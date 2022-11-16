@@ -4,10 +4,9 @@ namespace App\Policies;
 
 use App\Models\Course;
 use App\Models\Teacher;
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TeachearsCoursePolicy
+class TeachersCoursePolicy
 {
     use HandlesAuthorization;
 
