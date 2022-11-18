@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1\Teachers\QuestionType;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\Teachers\QuestionType\UpdateRequest;
-use App\Http\Requests\Api\V1\Teachers\QuestionType\CreateRequest;
+use App\Http\Requests\Api\V1\Teachers\QuestionTypes\UpdateRequest;
+use App\Http\Requests\Api\V1\Teachers\QuestionTypes\CreateRequest;
 use App\Http\Resources\Api\V1\Teachers\QuestionType\QuestionTypeResource;
 use App\Models\QuestionType;
 

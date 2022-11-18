@@ -16,10 +16,8 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('problem_description');
-            $table->foreignId('question_type_id')
-                ->references('id')
-                ->on('question_types')
-                ->cascadeOnDelete();
+            $table->foreignId('exam_id')->references('id')->on('exams')->cascadeOnDelete();
+            $table->foreignId('question_type_id')->references('id')->on('question_types')->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->float('score');
             $table->timestamps();

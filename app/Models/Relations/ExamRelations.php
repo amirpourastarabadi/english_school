@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Models\Course;
+use App\Models\Question;
 use App\Models\Teacher;
 
 trait ExamRelations
@@ -15,5 +16,10 @@ trait ExamRelations
     public function teacher()
     {
         return $this->course->teacher();
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }

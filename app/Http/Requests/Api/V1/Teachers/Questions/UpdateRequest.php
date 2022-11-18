@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Api\V1\Teachers\QuestionType;
+namespace App\Http\Requests\Api\V1\Teachers\Questions;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -25,12 +24,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
-                'required',
-                'string',
-                'max:50',
-                Rule::unique('question_types')->ignore($this->question_type),
-            ]
+            'problem_description' => ['required', 'string', 'max:256', 'min:2'],
+            'exam_id'             => ['required', 'exists:exams,id'],
+            'question_type_id'    => ['required', 'exists:question_types,id'],
+            'picture'             => ['nullable', 'string', 'max:200'],
+            'score'               => ['required', 'numeric', 'min:0.25'],
         ];
     }
 }
