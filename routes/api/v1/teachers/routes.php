@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\Teachers\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Teachers\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Teachers\Courses\CourseController;
 use App\Http\Controllers\Api\V1\Teachers\Exams\ExamController;
+use App\Http\Controllers\Api\V1\Teachers\QuestionType\QuestionTypeController;
 use Illuminate\Support\Facades\Route;
 
 /** authentication */
@@ -17,4 +18,8 @@ Route::apiResource('courses', CourseController::class)->middleware(['auth:sanctu
 
 /** courses */
 Route::apiResource('courses.exams', ExamController::class)->middleware(['auth:sanctum', 'abilities:teachers']);
+/** end courses */
+
+/** courses */
+Route::apiResource('question-types', QuestionTypeController::class)->middleware(['auth:sanctum', 'abilities:teachers']);
 /** end courses */
