@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Teachers\Answers\AnswerController;
 use App\Http\Controllers\Api\V1\Teachers\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Teachers\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Teachers\Courses\CourseController;
@@ -28,5 +29,9 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:teachers']], function 
 
     /** Questions  */
     Route::apiResource('exams.questions', QuestionController::class);
+    /** end Questions */
+
+    /** Questions  */
+    Route::apiResource('exams.questions.answers', AnswerController::class);
     /** end Questions */
 });
