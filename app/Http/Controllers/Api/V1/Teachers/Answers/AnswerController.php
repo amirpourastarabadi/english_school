@@ -13,6 +13,11 @@ use App\Models\Question;
 class AnswerController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->authorizeResource(Answer::class, 'answer');
+    }
+
     public function index(Exam $exam, Question $question)
     {
         $answers = $question->answers;

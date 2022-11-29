@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Exam;
 use App\Models\Question;
+use App\Policies\TeacherAnswerPolicy;
 use App\Policies\TeachersCoursePolicy;
 use App\Policies\TeachersExamPolicy;
 use App\Policies\TeachersQuestionPolicy;
@@ -21,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         Course::class => TeachersCoursePolicy::class,
         Exam::class => TeachersExamPolicy::class,
         Question::class => TeachersQuestionPolicy::class,
+        Answer::class => TeacherAnswerPolicy::class,
     ];
 
     /**
