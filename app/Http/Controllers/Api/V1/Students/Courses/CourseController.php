@@ -10,9 +10,22 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::with(['exams', 'teacher'])->get();
+        $courses = auth()->user()->courses()->with(['exams', 'teacher'])->get();
 
         return CourseResource::make($courses);
     }
-    
+
+    public function enroll(Course $course)
+    {
+        auth()->user()->enroll($course);
+
+        return response()->json(['message' => "you enrolled in {$course->title} successfully."]);
+    }
+
+    public function leave(Course $course)
+    {
+        auth()->user()->leave($course);
+
+        return response()->json(['message' => "you left {$course->title} successfully."]);
+    }
 }

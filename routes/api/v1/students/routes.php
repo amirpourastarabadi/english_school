@@ -13,8 +13,11 @@ Route::post('login', LoginController::class)->name('login');
 
 
 /** courses */
-Route::get('courses', [CourseController::class, 'index']);
 //pick a course
-//take an exam
+Route::group(['middleware' => ['auth:sanctum', 'abilities:students']], function(){
+    Route::get('courses', [CourseController::class, 'index']);
+    Route::post('courses/{course}', [CourseController::class, 'enroll']);
+    Route::delete('courses/{course}', [CourseController::class, 'leave']);
+});
 /** end courses */
 

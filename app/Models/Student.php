@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Behaviors\StudentBehaviors;
 use App\Models\Mutators\StudentMutators;
+use App\Models\Relations\StudentRelations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
@@ -11,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Student extends Model
 {
     use HasFactory, HasApiTokens;
-    use StudentMutators, StudentBehaviors;
+    use StudentMutators, StudentBehaviors, StudentRelations;
 
     protected $fillable = [
         'mobile',
