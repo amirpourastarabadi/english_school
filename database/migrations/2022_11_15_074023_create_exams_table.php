@@ -17,6 +17,7 @@ class CreateExamsTable extends Migration
             $table->id();
             $table->foreignId('course_id')->references('id')->on('courses')->cascadeOnUpdate();
             $table->string('title');
+            $table->integer('time')->comment('duration in minutes that exam shoul taken.');
             $table->timestamps();
             $table->softDeletes();
         });
