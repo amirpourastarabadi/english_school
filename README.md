@@ -1,3 +1,6 @@
 # English_school
-1- clone project
-2- docker compose up
+- clone project
+- cp .env.example .env
+- composer install
+- php artisan key:generate
+- docker compose up
