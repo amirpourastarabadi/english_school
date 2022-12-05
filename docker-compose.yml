@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  shool:
+    build: 
+      context: ./English_school
+      dockerfile: Dockerfile
+    command: 'php artisan serve --host=0.0.0.0 --port=8003'
+    volumes:
+      - ./English_school:/app
+    ports:
+      - 8003:8003
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE : school
+      MYSQL_USER : admin
+      MYSQL_ROOT : admin
+      MYSQL_PASSWORD : admin
+      MYSQL_ROOT_PASSWORD : root
+    volumes:
+      - ./storage/mysqldata:/var/lib/mysql
+    ports:
+      - 3306:3306
