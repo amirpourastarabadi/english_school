@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:students']], function(
     Route::get('/courses/{course}/exams', [ExamController::class, 'index']);
     Route::post('/courses/{course}/exams/{exam}/take', [ExamController::class, 'takeExam']);
     Route::post('/courses/{course}/exams/{exam}/finish', [ExamController::class, 'finishExam']);
+    Route::get('/courses/{course}/exams/{exam}/report', [ExamController::class, 'report']);
     /** end exams */
 
 });

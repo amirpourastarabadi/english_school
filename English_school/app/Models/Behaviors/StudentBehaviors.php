@@ -81,4 +81,36 @@ trait StudentBehaviors
 
         DB::table('answer_sheets')->insert($answerSheet);
     }
+
+    public function takenExam(Exam $exam)
+    {
+        return $this->answerSheets()->where('exam_id', $exam->getKey())->exists();
+    }
+
+    public function getAnswerSheetOf(Exam $exam)
+    {
+        $answerSheet = $this->answerSheets()
+            ->where('exam_id', $exam->getKey())
+            ->orderBy('submitted_at')
+            ->take($exam->questions->count())
+            ->orderBy('question_id')
+            ->select('question_id', 'answered_id')
+            ->get();
+
+        $trueAnswers = $exam->questions()
+            ->with(['answers' => function ($answer) {
+                return $answer->where('is_correct', true);
+            }])
+            ->select('id')
+            ->get();
+
+        foreach ($answerSheet as $answer) {
+            $answer->is_correct =
+                is_null($answer->answered_id) ?
+                null :
+                $trueAnswers->where('id', '=', $answer->question_id)->first()->answers->contains($answer->answered_id);
+        }
+
+        return $answerSheet;
+    }
 }
