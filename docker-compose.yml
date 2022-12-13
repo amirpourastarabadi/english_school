@@ -1,16 +1,6 @@
 version: '3'
 
 services:
-  shool:
-    build: 
-      context: ./English_school
-      dockerfile: Dockerfile
-    command: 'php artisan serve --host=0.0.0.0 --port=8003'
-    volumes:
-      - ./English_school:/app
-    ports:
-      - 8003:8003
-
   mysql:
     image: mysql:8.0
     environment:
@@ -23,3 +13,15 @@ services:
       - ./storage/mysqldata:/var/lib/mysql
     ports:
       - 3306:3306
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:mysql
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_USERNAME: "admin"
+      MYSQL_ROOT_PASSWORD: "root"
+      PMA_HOST: mysql
+      UPLOAD_LIMIT: 300M
