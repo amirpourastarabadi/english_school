@@ -4,6 +4,7 @@ namespace App\Models\Behaviors;
 
 use App\Models\Course;
 use App\Models\Exam;
+use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\FuncCall;
 
 trait StudentBehaviors
@@ -40,16 +41,21 @@ trait StudentBehaviors
         }
     }
 
-    public function finishExam(Exam $exam/**, AnswerSheet $answerSheet */)
+    public function finishExam(Exam $exam, array $answers): string
     {
         if ($this->hasOpenExam($exam)) {
-            // $this->saveAnserSheet($exam, $answerSheet);
+
+            $this->saveAnswerSheet($exam, $answers);
 
             $this->exams()
                 ->where('exam_id', $exam->id)
                 ->whereNull('finished_at')
                 ->update(['finished_at' => now()]);
+
+            return "Thanks, You can see the result in your profile.";
         }
+
+        return "You don't have open exam on '$exam->title' of course '{$exam->course->title}'!";
     }
 
     public function hasOpenExam(Exam $exam)
@@ -58,5 +64,21 @@ trait StudentBehaviors
             ->whereNull('finished_at')
             ->where('exam_id', $exam->id)
             ->exists();
+    }
+
+    public function saveAnswerSheet(Exam $exam, array $answers)
+    {
+        $answerSheet = [];
+        foreach ($answers as $question => $answer) {
+            $answerSheet[] = [
+                'answered_id'  => $answer,
+                'exam_id'      => $exam->getKey(),
+                'question_id'  => $question,
+                'student_id'   => $this->getKey(),
+                'submitted_at' => now()->toDateTimeString(),
+            ];
+        }
+
+        DB::table('answer_sheets')->insert($answerSheet);
     }
 }

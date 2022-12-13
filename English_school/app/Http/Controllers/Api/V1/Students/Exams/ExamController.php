@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Students\Exams;
 
 use App\Http\Resources\Api\V1\Students\Exams\ExamResource;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\Students\AnswerSheets\CreateRequest;
 use App\Http\Resources\Api\V1\Students\Questions\QuestionResource;
 use App\Models\Course;
 use App\Models\Exam;
@@ -30,21 +31,19 @@ class ExamController extends Controller
         
         auth()->user()->startExam($exam);
 
-        $questins = $exam->questions;
+        $questins = $exam->questions()->with('answers')->get();
 
         return QuestionResource::make($questins);
     }
 
-    public function finishExam(Course $course, Exam $exam)
+    public function finishExam(CreateRequest $request, Course $course, Exam $exam)
     {
-        // todo: need to upload anwer sheet to this method
-
         if(!is_null($course) && !auth()->user()->enrolledInCourse($course)){
             return response()->json(['message' => "You do not enroll in {$course->title}"], Response::HTTP_UNAUTHORIZED);
         }
 
-        auth()->user()->finishExam($exam);
+        $message = auth()->user()->finishExam($exam, $request->get('answers'));
 
-        return response()->json(['message' => "Thanks, You can see the result in your profile."]);
+        return response()->json(['message' => $message]);
     }
 }
